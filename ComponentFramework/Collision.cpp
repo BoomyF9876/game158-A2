@@ -14,5 +14,6 @@ void COLLISION::SphereSphereCollisionResponse(const Body* body1, const Body* bod
 {
 	// TODO for YOU
 	// Depends on weight and bounciness of the matter
+	// dongliang p = mv
 	
 }

@@ -236,7 +236,7 @@ void Scene2p::Update(const float deltaTime) {
 	float velocityMag;
 
 	// velocity direction = angular_vel dir CROSS planeNormal
-	Vec3  velocityDir;
+	Vec3 velocityDir;
 
 	// set the sphereBody's velocity to be velocityMag * velocityDir
 
