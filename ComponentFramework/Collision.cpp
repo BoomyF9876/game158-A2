@@ -9,3 +9,10 @@ bool COLLISION::SphereSphereCollisionDetected(const Body* body1, const Body* bod
 	// Else, there is a collision (return true)
 	return false;
 }
+
+void COLLISION::SphereSphereCollisionResponse(const Body* body1, const Body* body2)
+{
+	// TODO for YOU
+	// Depends on weight and bounciness of the matter
+	
+}
