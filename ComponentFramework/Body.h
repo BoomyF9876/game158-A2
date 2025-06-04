@@ -14,8 +14,6 @@ class Body {
 public:
     Body();
     ~Body();
-public: // Not today Scott!!
-public: /// Physics stuff
 	Vec3 pos;
 	Vec3 vel;
 	Vec3 accel;
@@ -28,12 +26,6 @@ public: /// Physics stuff
 	float radius;
 	Matrix3 rotationalInertia;
 
-
-private: /// Graphics stuff 
-	Mesh *mesh;
-	Texture *texture;
-	
-public:
 	bool OnCreate();
 	void OnDestroy();
 	void Update(float deltaTime);
@@ -43,10 +35,16 @@ public:
 	void setAccel(const Vec3 &accel_) { accel = accel_;}
 	void UpdateOrientation(float deltaTime);
 	void UpdateAngularVel(float deltaTime);
+	void UpdateVel(float deltaTime);
+	void UpdatePos(float deltaTime);
 
 	// The following const is a promise
 	// This method will not change the member variable
 	Matrix4 getModelMatrix() const;
+
+private: /// Graphics stuff 
+	Mesh* mesh;
+	Texture* texture;
 };
 
 #endif

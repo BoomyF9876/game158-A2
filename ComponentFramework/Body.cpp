@@ -25,6 +25,14 @@ void Body::Update(float deltaTime) {
 	vel += accel * deltaTime;
 }
 
+void Body::UpdateVel(float deltaTime) {
+	vel += accel * deltaTime;
+}
+
+void Body::UpdatePos(float deltaTime) {
+	pos += vel * deltaTime;
+}
+
 void Body::ApplyForce(Vec3 force) {
 	accel = force / mass;
 }
@@ -63,6 +71,7 @@ void Body::UpdateAngularVel(float deltaTime)
 	// TODO for YOU
 	// Code up Umer's scribbles (also in circularMotion slides)
 	// final angular_vel = initial angular_vel + angular_acc * deltaTime
+	angularVel += angularAcc * deltaTime;
 }
 
 // Note to self

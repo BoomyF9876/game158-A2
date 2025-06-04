@@ -1,11 +1,11 @@
-Fri May 23 15:09:20 2025
+Fri May 30 16:29:45 2025
 [INFO]: Starting the SceneManager
 [INFO]: OpenGL version: 4.5.13476 Compatibility Profile Context 22.19.170.1536
 [INFO]: Graphics card vendor ATI Technologies Inc.
 [INFO]: Graphics card name AMD Radeon R9 M370X
 [INFO]: GLSL Version 4.50
-[INFO]: Created Scene2p: 
-[INFO]: Loading assets Scene2p: 
+[INFO]: Created Scene3p: 
+[INFO]: Loading assets Scene3p: 
 [INFO]: Uniforms:
 "color" loc:3
 "modelMatrix" loc:2
@@ -13,5 +13,5 @@ Fri May 23 15:09:20 2025
 "viewMatrix" loc:1
 
 [INFO]: Deleting the SceneManager
-[INFO]: Deleting assets Scene2p: 
-[INFO]: Deleted Scene2p: 
+[INFO]: Deleting assets Scene3p: 
+[INFO]: Deleted Scene3p: 

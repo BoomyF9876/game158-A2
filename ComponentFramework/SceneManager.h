@@ -18,7 +18,7 @@ private:
 		SCENE0p,
 		SCENE1p,
 		SCENE2p,
-		SCENE3,
+		SCENE3p,
 		SCENE4,
 		SCENE5,
 		SCENE6

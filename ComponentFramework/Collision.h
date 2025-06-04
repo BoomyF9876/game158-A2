@@ -12,5 +12,5 @@ namespace COLLISION {
 	// That is a promise to the compilar that we won’t change the Body objects.
 	// We are just detecting collisions after all
 	bool SphereSphereCollisionDetected(const Body* body1, const Body* body2);
-	void SphereSphereCollisionResponse(const Body* body1, const Body* body2);
+	void SphereSphereCollisionResponse(Body* body1, Body* body2);
 }

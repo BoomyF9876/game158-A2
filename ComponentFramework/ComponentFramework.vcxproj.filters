@@ -63,6 +63,9 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene3p.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene3p.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

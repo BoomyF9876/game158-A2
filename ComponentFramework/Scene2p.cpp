@@ -56,7 +56,7 @@ bool Scene2p::OnCreate() {
 	cueBall->radius = 1;
 	// Umer testing angular acc
 	// This should make the ball spin faster and faster!
-	cueBall->angularAcc = Vec3(0, 0, 1);
+	cueBall->angularAcc = Vec3(0, 0, 0);
 
 	targetBall = new Body();
 	targetBall->OnCreate();
@@ -128,8 +128,8 @@ void Scene2p::HandleEvents(const SDL_Event &sdlEvent) {
 				drawInWireMode = !drawInWireMode;
 				break;
 			case SDL_SCANCODE_A:
-			{
 				// Rotate the plane and it's normal vector
+			{
 				Vec3 axis = Vec3(0, 0, 1);
 				Quaternion rotation = QMath::angleAxisRotation(deltaAngleDegrees, axis);
 				// Combine rotations by multiplying
@@ -139,25 +139,28 @@ void Scene2p::HandleEvents(const SDL_Event &sdlEvent) {
 				planeNormal.print("plane normal vector");
 			}
 				break;
-
 			case SDL_SCANCODE_D:
 				// TODO for YOU to rotate using all WASD keys
 				break;
 
 			case SDL_SCANCODE_SPACE:
-				{
 				// Whack the ball based on where the orbit camera is looking
 				// Scott says this is always -z dammit
 				//                          x, y,  z, w  (w = zero for things you don't want to translate)
+			{
 				Vec4 changeInVelCameraSpace(0, 0, -1, 0);
+				Vec3 snookerTableNormal = Vec3(0, 1, 0);
 				Matrix4 worldToCameraSpace = viewMatrix;
 				Matrix4 cameraToWorldSpace = MMath::inverse(worldToCameraSpace);
 				Vec4 changeInVelWorldSpace = cameraToWorldSpace * changeInVelCameraSpace;
 
 				cueBall->vel += changeInVelWorldSpace;
-				
-				}
-				
+				//cueBall->angularAcc += changeInVelWorldSpace;
+				cueBall->angularVel += VMath::normalize(VMath::cross(snookerTableNormal, cueBall->vel)) * VMath::mag(cueBall->vel) / cueBall->radius;
+
+				Vec3 velDir = VMath::normalize(VMath::cross(cueBall->angularVel, snookerTableNormal));
+				cueBall->vel = VMath::mag(cueBall->vel) * velDir;
+			}
 				break;
 
 
@@ -171,7 +174,7 @@ void Scene2p::HandleEvents(const SDL_Event &sdlEvent) {
 		break; 
 
 	case SDL_MOUSEBUTTONUP:            
-	break;
+		break;
 
 	default:
 		break;
@@ -179,15 +182,9 @@ void Scene2p::HandleEvents(const SDL_Event &sdlEvent) {
 }
 
 void Scene2p::Update(const float deltaTime) {
-
-	bool hasCollided = COLLISION::SphereSphereCollisionDetected(cueBall, targetBall);
-
-	if(hasCollided){
-		std::cout << "Collision!\n";
-	}else{
-		std::cout << "No collision!\n";
+	if (COLLISION::SphereSphereCollisionDetected(cueBall, targetBall)) {
+		COLLISION::SphereSphereCollisionResponse(cueBall, targetBall);
 	}
-
 
 	// TODO for YOU
 	// Calculate torqueMag using forceMag * distance to pivot
@@ -223,12 +220,15 @@ void Scene2p::Update(const float deltaTime) {
 
 	// See if your angular acceleration works
 	cueBall->UpdateAngularVel(deltaTime);
+	targetBall->UpdateAngularVel(deltaTime);
 	
 	// Change quaternion based on angular vel
 	cueBall->UpdateOrientation(deltaTime);
+	targetBall->UpdateOrientation(deltaTime);
 
 	// Umer testing the space key to whack the ball
 	cueBall->Update(deltaTime);
+	targetBall->Update(deltaTime);
 
 	// TODO for YOU:
 	// Use Umer's scribbles

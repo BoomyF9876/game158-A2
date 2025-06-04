@@ -15,26 +15,22 @@ class Shader;
 
 class Scene2p : public Scene {
 private:
-	Body*   planeBody;
-	Mesh*   planeMesh;
-	Body*   cueBall;
-	Body*   targetBall;
-	Mesh*   sphereMesh;
-	Shader* shader;
-	Matrix4 projectionMatrix;
-	Matrix4 viewMatrix;
-	bool drawInWireMode;
-	Vec3 planeNormal;
-	// Look away Scott...
-	Vec3 cameraPos;
+	Body*      planeBody;
+	Mesh*      planeMesh;
+	Body*      cueBall;
+	Body*      targetBall;
+	Mesh*      sphereMesh;
+	Shader*    shader;
+	Matrix4    projectionMatrix;
+	Matrix4    viewMatrix;
+	bool	   drawInWireMode;
+	Vec3 	   planeNormal;
+	Vec3	   cameraPos;
 	Quaternion cameraOrientation;
-	// Rotate the camera using a trackball
-	// Umer is making it on the heap as its 128 bytes big
 	Trackball* trackball;
 	// Umer says you need to divide to find the change in orientation quaternion...
 	Quaternion initialTrackballOrientation;
 	Quaternion finalTrackballOrientation;
-
 
 public:
 	explicit Scene2p();
